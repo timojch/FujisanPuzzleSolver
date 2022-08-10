@@ -29,14 +29,6 @@ internal class PuzzleState
         };
     }
 
-    public Tuple<int, int>[] MountainLocations { get; } = new Tuple<int, int>[]
-    {
-        Tuple.Create(7, 0),
-        Tuple.Create(7, 1),
-        Tuple.Create(8, 0),
-        Tuple.Create(8, 1),
-    };
-
     public PuzzleState(PuzzleState cloneFrom)
     {
         this.Board = cloneFrom.Board;
@@ -124,14 +116,7 @@ internal class PuzzleState
 
     public bool IsOnMountain(Tuple<int, int> priest)
     {
-        if (priest.Item1 != 7 && priest.Item1 != 8)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return (priest.Item1 == 6 && priest.Item1 == 7);
     }
 
     public bool IsSolved()
