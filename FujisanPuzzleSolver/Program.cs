@@ -28,6 +28,7 @@ var initialState = new PuzzleState(board);
 openList.Enqueue(initialState);
 knownPuzzleStates.Add(initialState);
 var lastKnownSolutionDepth = 0;
+var numberOfPriestsOnMountain = 0;
 
 while (openList.TryDequeue(out var currentState))
 {
@@ -38,7 +39,8 @@ while (openList.TryDequeue(out var currentState))
         {
             Console.WriteLine(move.ToString());
         }
-        break;
+
+        return;
     }
     else
     {
@@ -55,6 +57,14 @@ while (openList.TryDequeue(out var currentState))
     if (currentState.SolutionDepth > lastKnownSolutionDepth)
     {
         lastKnownSolutionDepth = currentState.SolutionDepth;
-        Console.WriteLine($"Expanding solution depth: {currentState.SolutionDepth}");
+        Console.WriteLine($"Expanding solution depth: {currentState.SolutionDepth} (width = {openList.Count})");
+    }
+
+    if (currentState.GetNumberOfPriestsOnMountain() > numberOfPriestsOnMountain)
+    {
+        numberOfPriestsOnMountain = currentState.GetNumberOfPriestsOnMountain();
+        Console.WriteLine($"Now I can get {numberOfPriestsOnMountain} onto the mountain");
     }
 }
+
+Console.WriteLine("Open list is exhausted but no solution was found.");
