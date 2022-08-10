@@ -47,13 +47,13 @@ internal class PuzzleState
 
     public IEnumerable<Move> GetMovesLeadingTo()
     {
-        if(this.LastPuzzleState == null || this.LastMove == null)
+        if (this.LastPuzzleState == null || this.LastMove == null)
         {
             yield break;
         }
         else
         {
-            foreach(var previousMove in this.LastPuzzleState.GetMovesLeadingTo())
+            foreach (var previousMove in this.LastPuzzleState.GetMovesLeadingTo())
             {
                 yield return previousMove;
             }
@@ -116,20 +116,17 @@ internal class PuzzleState
 
     public bool IsOnMountain(Tuple<int, int> priest)
     {
-        return (priest.Item1 == 6 && priest.Item1 == 7);
+        return (priest.Item1 == 6 || priest.Item1 == 7);
+    }
+
+    public int GetNumberOfPriestsOnMountain()
+    {
+        return this.PriestLocations.Where(priest => this.IsOnMountain(priest)).Count();
     }
 
     public bool IsSolved()
     {
-        foreach (var priest in this.PriestLocations)
-        {
-            if (!this.IsOnMountain(priest))
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return this.GetNumberOfPriestsOnMountain() == 4;
     }
 
     public bool CanMove(Tuple<int, int> startLocation, Tuple<int, int> endLocation)
