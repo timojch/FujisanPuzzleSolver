@@ -15,6 +15,6 @@ internal class Move
 
     public override string ToString()
     {
-        return $"Move Priest {(char)(this.PriestNumber + 'A')} to the {(this.EndingLocation.Item2 == 0 ? "top" : "bottom")} of domino {this.EndingLocation.Item1})";
+        return $">! Move Priest {(char)(this.PriestNumber + 'A')} to the {(this.EndingLocation.Item2 == 0 ? "top" : "bottom")} of domino {this.EndingLocation.Item1}  ";
     }
 }
