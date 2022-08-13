@@ -83,7 +83,7 @@ internal class PuzzleState
 
             if (this.IsOnMountain(startLocation))
             {
-                var shiftOnMountain = Tuple.Create(startLocation.Item1, startLocation.Item2 == 7 ? 8 : 7);
+                var shiftOnMountain = Tuple.Create(startLocation.Item1 == 7 ? 6 : 7, startLocation.Item2);
 
                 if (!this.PriestLocations.Contains(shiftOnMountain))
                 {
